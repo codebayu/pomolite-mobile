@@ -17,9 +17,10 @@ export const Home = () => {
     status: 'focus',
     counter: 0,
     phase: 1,
+    base: 0,
+    percentage: 0,
   };
   const [state, setState] = useState(initialState);
-  const [progress, setProgress] = useState(0);
   const { focus, longBreak, replay, shortBreak, speed } = useAppSelector(
     (state) => state.timerReducer
   );
@@ -32,20 +33,25 @@ export const Home = () => {
       : '#fcce3b';
 
   function setTimer() {
-    setState((prev) => ({
-      ...prev,
-      timer: {
-        ...prev.timer,
-        pause: true,
-        minutes:
-          state.status === 'focus'
-            ? focus
-            : state.status === 'shortBreak'
-            ? shortBreak
-            : longBreak,
-        seconds: 0,
-      },
-    }));
+    setState((prev) => {
+      const baseValue =
+        state.status === 'focus'
+          ? focus
+          : state.status === 'shortBreak'
+          ? shortBreak
+          : longBreak;
+      return {
+        ...prev,
+        timer: {
+          ...prev.timer,
+          pause: true,
+          minutes: baseValue,
+          seconds: 0,
+        },
+        base: baseValue * 60,
+        percentage: baseValue * 60,
+      };
+    });
   }
 
   function handlePause() {
@@ -74,7 +80,7 @@ export const Home = () => {
       setState((prev) => ({
         ...prev,
         status: 'longBreak',
-        phase: state.phase + 1,
+        phase: 3,
       }));
     } else {
       setState((prev) => ({
@@ -83,7 +89,6 @@ export const Home = () => {
         phase: 1,
       }));
     }
-    setProgress(0);
   }
 
   function renderStatus() {
@@ -114,6 +119,7 @@ export const Home = () => {
                 ...prev.timer,
                 seconds: state.timer.seconds - 1,
               },
+              percentage: state.percentage - 1,
             }));
           } else if (state.timer.minutes > 0) {
             setState((prev) => ({
@@ -123,6 +129,7 @@ export const Home = () => {
                 minutes: state.timer.minutes - 1,
                 seconds: 59,
               },
+              percentage: state.percentage - 1,
             }));
           }
         }, (1 / speed) * 1000);
@@ -194,7 +201,7 @@ export const Home = () => {
           {...state}
           currentColor={currentColor}
           renderStatus={renderStatus()}
-          progress={progress}
+          progress={(state.percentage / state.base) * 100}
         />
         <View style={styles.phaseCardContainer}>
           <PlayAction
@@ -202,6 +209,7 @@ export const Home = () => {
             handleNext={handleNext}
             timer={state.timer}
             phase={state.phase}
+            status={state.status}
             currentColor={currentColor}
           />
         </View>

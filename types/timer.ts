@@ -9,6 +9,8 @@ export interface initialState {
   status: ITimerStatus;
   counter: number;
   phase: number;
+  base: number;
+  percentage: number;
 }
 
 export type IBreakStatus = 'shortBreak' | 'longBreak';

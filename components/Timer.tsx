@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { ITimer, ITimerStatus } from '../types/timer';
+import { ITimer } from '../types/timer';
 
 interface TimerProps {
   timer: ITimer;
