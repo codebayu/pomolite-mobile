@@ -15,7 +15,7 @@ export const timer = createSlice({
     shortBreak: 5,
     longBreak: 15,
     replay: 4,
-    speed: 1,
+    speed: 1.03,
   } as InitialState,
   reducers: {},
 });

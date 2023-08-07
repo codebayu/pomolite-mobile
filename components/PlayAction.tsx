@@ -30,7 +30,7 @@ export const PlayAction = (props: PlayActionProps) => {
       </Pressable>
       <Pressable style={styles.nextButton} onPress={handleNext}>
         <MaterialIcons
-          name={phase === 3 && status === 'longBreak' ? 'replay' : 'skip-next'}
+          name={phase === 4 && status === 'longBreak' ? 'replay' : 'skip-next'}
           size={40}
           color="gray"
         />

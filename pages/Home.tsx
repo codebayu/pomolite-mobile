@@ -65,22 +65,22 @@ export const Home = () => {
   }
 
   function handleNext() {
-    if (state.status === 'focus' && state.phase < 3) {
+    if (state.status === 'focus' && state.phase < 4) {
       setState((prev) => ({
         ...prev,
         status: 'shortBreak',
       }));
-    } else if (state.status === 'shortBreak' && state.phase < 3) {
+    } else if (state.status === 'shortBreak' && state.phase < 4) {
       setState((prev) => ({
         ...prev,
         status: 'focus',
         phase: state.phase + 1,
       }));
-    } else if (state.status === 'focus' && state.phase === 3) {
+    } else if (state.status === 'focus' && state.phase === 4) {
       setState((prev) => ({
         ...prev,
         status: 'longBreak',
-        phase: 3,
+        phase: 4,
       }));
     } else {
       setState((prev) => ({
@@ -134,7 +134,11 @@ export const Home = () => {
           }
         }, (1 / speed) * 1000);
         return () => clearTimeout(timer);
-      } else if (state.status === 'focus' && state.counter < replay) {
+      } else if (
+        state.status === 'focus' &&
+        state.counter < replay &&
+        state.phase < 4
+      ) {
         setState((prev) => ({
           ...prev,
           status: 'shortBreak',
@@ -145,10 +149,7 @@ export const Home = () => {
             seconds: 0,
           },
         }));
-      } else if (
-        state.status === 'shortBreak' ||
-        state.status === 'longBreak'
-      ) {
+      } else if (state.status === 'shortBreak') {
         setState((prev) => ({
           ...prev,
           status: 'focus',
@@ -158,6 +159,19 @@ export const Home = () => {
             minutes: focus,
             seconds: 0,
           },
+          phase: state.phase + 1,
+        }));
+      } else if (state.status === 'longBreak') {
+        setState((prev) => ({
+          ...prev,
+          status: 'focus',
+          timer: {
+            ...prev.timer,
+            pause: true,
+            minutes: focus,
+            seconds: 0,
+          },
+          phase: 1,
         }));
       } else {
         setState((prev) => ({
