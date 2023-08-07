@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Timer } from '../components/Timer';
 import { PhaseInfo } from '../components/PhaseInfo';
 import { PlayAction } from '../components/PlayAction';
@@ -208,6 +208,7 @@ export const Home = () => {
         end={[1, 1]}
         style={styles.top}
       >
+        <Text style={styles.brand}>Pomolite</Text>
         <Timer timer={state.timer} status={renderStatus()} />
       </LinearGradient>
       <View style={styles.bottom}>
@@ -238,12 +239,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  brand: {
+    fontSize: 30,
+    fontWeight: '800',
+    color: 'white',
+    position: 'absolute',
+    top: 90,
+  },
   top: {
     flex: 1,
     backgroundColor: 'transparent',
     width: '100%',
     justifyContent: 'center',
-    alignContent: 'center',
     alignItems: 'center',
   },
   bottom: {
