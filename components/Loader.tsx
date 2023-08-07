@@ -7,11 +7,10 @@ interface LoaderProps {
 }
 export const Loader = ({ currentColor, progress }: LoaderProps) => {
   return (
-    <View style={styles.loaderContainer}>
+    <View style={{ ...styles.loaderContainer, backgroundColor: currentColor }}>
       <View
         style={{
           ...styles.progress,
-          backgroundColor: currentColor,
           width: `${progress}%`,
         }}
       />
@@ -24,10 +23,11 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 10,
     borderRadius: 20,
-    backgroundColor: '#dcdcdc',
+    alignItems: 'flex-end',
+    overflow: 'hidden',
   },
   progress: {
     height: 10,
-    borderRadius: 20,
+    backgroundColor: '#dcdcdc',
   },
 });

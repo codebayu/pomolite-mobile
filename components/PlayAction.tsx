@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { ITimer } from '../types/timer';
+import { ITimer, ITimerStatus } from '../types/timer';
 
 interface PlayActionProps {
   handlePause(): void;
@@ -9,14 +9,10 @@ interface PlayActionProps {
   timer: ITimer;
   phase: number;
   currentColor: string;
+  status: ITimerStatus;
 }
-export const PlayAction = ({
-  handlePause,
-  handleNext,
-  timer,
-  phase,
-  currentColor,
-}: PlayActionProps) => {
+export const PlayAction = (props: PlayActionProps) => {
+  const { handlePause, handleNext, timer, phase, currentColor, status } = props;
   return (
     <View style={styles.container}>
       <Pressable style={styles.prevButton} disabled>
@@ -34,7 +30,7 @@ export const PlayAction = ({
       </Pressable>
       <Pressable style={styles.nextButton} onPress={handleNext}>
         <MaterialIcons
-          name={phase <= 3 ? 'skip-next' : 'replay'}
+          name={phase === 4 && status === 'longBreak' ? 'replay' : 'skip-next'}
           size={40}
           color="gray"
         />

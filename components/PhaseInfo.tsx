@@ -42,7 +42,7 @@ export const PhaseInfo = (props: PhaseInfoProps) => {
         default:
           return 'First Phase';
       }
-    } else if (status === 'focus' && phase === 3) {
+    } else if (status === 'focus' && phase === 4) {
       return 'Long Break';
     } else {
       return 'Short Break';
@@ -62,7 +62,7 @@ export const PhaseInfo = (props: PhaseInfoProps) => {
           <Text style={{ ...styles.remaining, color: currentColor }}>
             {timer.minutes} minutes remaining
           </Text>
-          {phase !== 4 && (
+          {status !== 'longBreak' && (
             <Text style={styles.description}>Next: {renderNextPhase()}</Text>
           )}
         </View>
