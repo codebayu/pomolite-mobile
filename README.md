@@ -4,11 +4,11 @@ Experience a new level of productivity and focus with Pomolite, the ultimate Pom
 This project was bootstrapped with [Expo React Native](https://expo.dev/)
 
 ## Preview
-<img src="https://github.com/Bayusetiawan45/pomodoro-app/assets/99315255/3f122183-289b-4f12-9024-604f5cb4fd01" alt="focus" width="325" height="650" />
+<img src="https://github.com/Bayusetiawan45/pomodoro-app/assets/99315255/3f122183-289b-4f12-9024-604f5cb4fd01" alt="focus" width="200" />
 
-<img src="https://github.com/Bayusetiawan45/pomodoro-app/assets/99315255/93b61179-7ec1-4634-9137-f12302607886" alt="short" width="325" height="650" />
+<img src="https://github.com/Bayusetiawan45/pomodoro-app/assets/99315255/93b61179-7ec1-4634-9137-f12302607886" alt="short" width="200" />
 
-<img src="https://github.com/Bayusetiawan45/pomodoro-app/assets/99315255/b51ce793-3380-4c0c-b692-035e1d13ea6f" alt="long" width="325" height="650" />
+<img src="https://github.com/Bayusetiawan45/pomodoro-app/assets/99315255/b51ce793-3380-4c0c-b692-035e1d13ea6f" alt="long" width="200" />
 
 
 ## Prerequisites
